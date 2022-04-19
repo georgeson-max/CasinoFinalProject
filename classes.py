@@ -3,7 +3,7 @@ import random
 class Person:
     def __init__(self):
         self.bank = 500
-        self.bet = 0
+        self.current_bet = 0
         self.num_choice = 40
         self.choice = ''
         self.won = False
@@ -23,7 +23,6 @@ class Roulette:
         self.dozen = ''
         self.even_odd = ''
         self.low_high = ''
-        self.spun = False
         self.min = 1
         self.max = 1000
 
@@ -138,9 +137,9 @@ class Roulette:
                 return True     
 
     def spin(self, num):
-        self.spin = True
         self.number = num
         self.color = self.colors[num]
+        print("The roulette has been spun, and it's a", self.color, self.number)
         if (num > 0 and num < 13):
             self.dozen = 'first'
         if (num > 12 and num < 25):
@@ -162,19 +161,19 @@ class Roulette:
             print('Congratulations, you won!')
             return True
         else:
-            print("Sorry, you didn't win. Better luck next time!")
+            print("Sorry, you didn't win. Your bank is now down to $", p.bank, ". Better luck next time!", sep='')
             return False
     
     def payout(self, p):
-        p.bank += p.current_bet * p.odds
+        p.bank += p.current_bet * p.odds + p.current_bet
         print("Your winnings this round total $", p.current_bet * p.odds, " so you know have $", p.bank, "!", sep='')
 
 
 
         
 
-    def make_bet(self, player, choice):
-        print("How much would you like to bet? You have $", player.bank, " the minimum bet is $", self.min, " and the maximum bet is $", self.max, sep='')
+    def make_bet(self, player):
+        print("How much would you like to bet? You have $", player.bank, ", the minimum bet is $", self.min, ", and the maximum bet is $", self.max, sep='')
         choice = player.get_input()
         try:
             bet = int(choice)
@@ -187,7 +186,7 @@ class Roulette:
         if (bet < self.min or bet > self.max):
             print("Sorry, for this table the minimum bet is $", self.min, " and the maximum bet is $", self.max, sep='')
             return False
-        player.currentBet = bet
+        player.current_bet = bet
         player.bank -= bet
         return True
 
