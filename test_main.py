@@ -261,6 +261,11 @@ class TestGame(unittest.TestCase):
         self.assertEqual(p.bank,500)
         self.assertEqual(p.current_bet, 0)
 
+        input_mock.return_value = 'f'
+        self.assertFalse(r.make_bet(p))
+        self.assertEqual(p.bank,500)
+        self.assertEqual(p.current_bet, 0)
+
         input_mock.return_value = 50
         self.assertTrue(r.make_bet(p))
         self.assertEqual(p.bank,450)
