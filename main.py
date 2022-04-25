@@ -1,6 +1,6 @@
 from classes import *
 
-def main():
+def Game():
     r = Roulette()
     p = Person()
     play = True
@@ -35,4 +35,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    Game()
