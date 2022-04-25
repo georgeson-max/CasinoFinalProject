@@ -123,6 +123,37 @@ class TestGame(unittest.TestCase):
         input_mock.return_value = 'f'
         self.assertFalse(r.bet_even(p))
 
+    def test_spin(self):
+        r = Roulette()
+        self.assertTrue(r.spin(1))
+        self.assertEqual(r.number, 1)
+        self.assertEqual(r.color, 'red')
+        self.assertEqual(r.dozen, 'first')
+        self.assertEqual(r.even_odd, 'Odd')
+        self.assertEqual(r.low_high, 'Low')
+
+
+        self.assertTrue(r.spin(20))
+        self.assertEqual(r.number, 20)
+        self.assertEqual(r.color, 'black')
+        self.assertEqual(r.dozen, 'second')
+        self.assertEqual(r.even_odd, 'Even')
+        self.assertEqual(r.low_high, 'High')
+
+        self.assertTrue(r.spin(33))
+        self.assertEqual(r.number, 33)
+        self.assertEqual(r.color, 'black')
+        self.assertEqual(r.dozen, 'third')
+        self.assertEqual(r.even_odd, 'Odd')
+        self.assertEqual(r.low_high, 'High')
+
+        self.assertFalse(r.spin(0))
+        self.assertEqual(r.number, 0)
+        self.assertEqual(r.color, 'green')
+        self.assertEqual(r.dozen, 'zero')
+        self.assertEqual(r.even_odd, 'zero')
+        self.assertEqual(r.low_high, 'zero')
+
 
 
 if __name__ == '__main__':

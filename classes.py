@@ -139,6 +139,11 @@ class Roulette:
         self.number = num
         self.color = self.colors[num]
         print("The roulette has been spun, and it's a", self.color, self.number)
+        if (num == 0):
+            self.dozen = 'zero'
+            self.even_odd = 'zero'
+            self.low_high = 'zero'
+            return False
         if (num > 0 and num < 13):
             self.dozen = 'first'
         if (num > 12 and num < 25):
@@ -153,6 +158,7 @@ class Roulette:
             self.low_high = 'Low'
         if (num > 18):
             self.low_high = 'High'
+        return True
 
     def check_winner(self, p):
         if(p.num_choice == self.number or p.choice == self.color or p.choice == self.dozen or p.choice == self.even_odd or p.choice == self.low_high):
