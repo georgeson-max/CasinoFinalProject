@@ -191,14 +191,15 @@ class Roulette:
         return True
 
     def play_again(self, p):
-        print('Would you like to play again? Y/N')
-        choice = p.get_input()
-        try:
-            answer = str(choice)
-        except ValueError:
-            return False
-        if (answer == "y" or answer == "Y"):
-            return True
+        if (p.bank > 0):
+            print('Would you like to play again? Y/N')
+            choice = p.get_input()
+            try:
+                answer = str(choice)
+            except ValueError:
+                return False
+            if (answer == "y" or answer == "Y"):
+                return True
         else:
             return False
 
