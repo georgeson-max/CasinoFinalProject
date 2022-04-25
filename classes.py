@@ -91,12 +91,12 @@ class Roulette:
     def bet_dozen(self, player):
         choice = 9
         player.odds = 2
-        while (choice > 6 or choice < 0):
+        while (choice > 3 or choice < 0):
             print("You've picked a dozen bet!")
             print('What dozen? Please enter the integer of your choice')
             print('1. First (1-12)')
             print('2. Second (13-24)')
-            print('3. Thirst (25-36)')
+            print('3. Third (25-36)')
             print('0. Quit')
             input = player.get_input()
             try:
