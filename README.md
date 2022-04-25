@@ -10,24 +10,11 @@ Through GitHub actions, every time new code is pushed, it is run through a testi
 
 
 |Name           |Stmts   |Miss  |Cover|
-
-|-------------------------------------|
-
+|---------------|--------|------|-----|
 |classes.py       |193     |14    |93%|
-
 |main.py          |29      |26    |10%|
-
 |test_main.py     |244     |1     |99%|
-
-|-------------------------------------|
-
 |TOTAL            |466     |41    |91%|
-
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
-
 
 This can be checked for every new push, under the Actions tab and in the "Test with pytest" section of the job.
 
