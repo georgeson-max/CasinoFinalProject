@@ -32,11 +32,46 @@ class TestGame(unittest.TestCase):
         self.assertEqual(r.low_high,'')
 
     @patch('classes.Person.get_input')
-    def test_make_choice(self, input_mock):
+    def test_make_choice(self, input_mock):         #integration test 1
         p = Person()
         r = Roulette()
         input_mock.return_value = 2
         self.assertEqual(r.make_choice(p),2)
+
+    @patch('classes.Person.get_input')
+    def test_bet_even(self, input_mock):            #integration test 2
+        p = Person()
+        r = Roulette()
+        input_mock.return_value = 1
+        self.assertTrue(r.bet_even(p))
+        self.assertEqual(p.odds, 1)
+        self.assertEqual(p.choice,'red')
+
+        input_mock.return_value = 2
+        self.assertTrue(r.bet_even(p))
+        self.assertEqual(p.odds, 1)
+        self.assertEqual(p.choice,'black')
+
+        input_mock.return_value = 3
+        self.assertTrue(r.bet_even(p))
+        self.assertEqual(p.odds, 1)
+        self.assertEqual(p.choice,'Even')
+
+        input_mock.return_value = 4
+        self.assertTrue(r.bet_even(p))
+        self.assertEqual(p.odds, 1)
+        self.assertEqual(p.choice,'Odd')
+
+        input_mock.return_value = 5
+        self.assertTrue(r.bet_even(p))
+        self.assertEqual(p.odds, 1)
+        self.assertEqual(p.choice,'Low')
+        
+        input_mock.return_value = 6
+        self.assertTrue(r.bet_even(p))
+        self.assertEqual(p.odds, 1)
+        self.assertEqual(p.choice,'High')
+
 
 
 if __name__ == '__main__':
