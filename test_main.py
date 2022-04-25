@@ -112,12 +112,6 @@ class TestGame(unittest.TestCase):
         self.assertEqual(p.odds, 35)
         self.assertEqual(p.num_choice, 36)
 
-        input_mock.return_value = 0
-        self.assertFalse(r.bet_straight(p))
-
-        input_mock.return_value = 'f'
-        self.assertFalse(r.bet_straight(p))
-
     def test_spin(self):
         r = Roulette()
         self.assertTrue(r.spin(1))
