@@ -16,7 +16,7 @@ Through GitHub actions, every time new code is pushed, it is run through a testi
 |test_main.py     |244     |1     |99%|
 |TOTAL            |466     |41    |91%|
 
-This can be checked for every new push, under the Actions tab and in the "Test with pytest" section of the job. I don't think the coverage of the test file itself is actually relevant, so for all intents and purposes, the total statements should be 222 and the total number of misses should be 40, so **the real code coverage is ~82%**
+This can be checked for every new push, under the Actions tab and in the "Test with pytest" section of the job. I don't think the coverage of the test file itself is actually relevant, so for all intents and purposes, the total statements should be 222 and the total number of misses should be 40, so **the real code coverage is ~82%**. Basically all of the missed coverage is in the main file, because it mostly just organizes the functions, as well as some in menus where an unacceptable input causes the menu to loop until there's a correct one, which is very difficult to test without having the test run forever. 
 
 Another thing this action does is update a Docker container which contains all of this code and allows you to play the game anywhere you can run Docker containers. It is public, so you just have to type `docker pull maxgeorgeson/casino` into your CLI, and then you can play it with `docker run --interactive maxgeorgeson/casino`
 
