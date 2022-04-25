@@ -3,7 +3,7 @@ name: Python tests
 on: [push]
 
 jobs:
-  build:
+  Automated Testing and Deployment:
 
     runs-on: ubuntu-latest
 
