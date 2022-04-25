@@ -1,4 +1,6 @@
 import unittest
+from unittest import mock
+from unittest.mock import patch
 from main import Game
 from classes import *
 
@@ -10,6 +12,12 @@ class TestGame(unittest.TestCase):
         self.assertEqual(p.num_choice, 40)
         self.assertEqual(p.choice, '')
         self.assertEqual(p.odds, 0)
+    
+    @patch('classes.Person.get_input')
+    def test_input_helper(self,input_mock):
+        input_mock.return_value = 'test'
+        p = Person()
+        self.assertEqual(p.get_input(), 'test')
 
     def test_roulette_init(self):
         r = Roulette()
