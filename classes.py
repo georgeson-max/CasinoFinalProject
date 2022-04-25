@@ -6,7 +6,6 @@ class Person:
         self.current_bet = 0
         self.num_choice = 40
         self.choice = ''
-        self.won = False
         self.odds = 0
 
     def get_input(self):
@@ -157,7 +156,6 @@ class Roulette:
 
     def check_winner(self, p):
         if(p.num_choice == self.number or p.choice == self.color or p.choice == self.dozen or p.choice == self.even_odd or p.choice == self.low_high):
-            p.won = True
             print('Congratulations, you won!')
             return True
         else:
