@@ -8,13 +8,21 @@ There will be three types of bets with three different odds: **even bets**, whic
 
 Through GitHub actions, every time new code is pushed, it is run through a testing suite. As it stands, the test coverage using this suite is shown below:
 
+
 |Name           |Stmts   |Miss  |Cover|
+
 |-------------------------------------|
+
 |classes.py       |193     |14    |93%|
+
 |main.py          |29      |26    |10%|
+
 |test_main.py     |244     |1     |99%|
+
 |-------------------------------------|
+
 |TOTAL            |466     |41    |91%|
+
 
 
 This can be checked for every new push, under the Actions tab and in the "Test with pytest" section of the job.
