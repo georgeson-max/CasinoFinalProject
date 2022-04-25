@@ -64,11 +64,13 @@ class Roulette:
             try:
                 choice = int(input)
             except ValueError:
+                print("Sorry, that's not a valid option. Please try again next round!")
                 return False
             if (choice == 0):
                 return False
             if (choice < 1 or choice > 6):
-                print("Sorry, that's not a valid option. Please try again")
+                print("Sorry, that's not a valid option. Please try again next round!")
+                return False
             if (choice == 1):
                 player.choice = "red"
                 return True
@@ -102,7 +104,7 @@ class Roulette:
             try:
                 choice = int(input)
             except ValueError:
-                return False
+                print("")
             if (choice == 0):
                 return False
             if (choice < 1 or choice > 3):
@@ -127,11 +129,11 @@ class Roulette:
             try:
                 choice = int(input)
             except ValueError:
-                return False
-            if (choice == 0):
+                print("Sorry, that's not a valid option. Please try again next round")
                 return False
             if (choice < 1 or choice > 36):
-                print("Sorry, that's not a valid option. Please try again, or bet 0 to quit")
+                print("Sorry, that's not a valid option. Please try again next round")
+                return False
             if (choice > 0 and choice < 37):
                 player.num_choice = choice
                 return True     
@@ -200,10 +202,7 @@ class Roulette:
         if (p.bank > 0):
             print('Would you like to play again? Y/N')
             choice = p.get_input()
-            try:
-                answer = str(choice)
-            except ValueError:
-                return False
+            answer = str(choice)
             if (answer == "y" or answer == "Y"):
                 p.current_bet = 0
                 p.num_choice = 40

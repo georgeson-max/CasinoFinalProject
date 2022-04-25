@@ -75,6 +75,9 @@ class TestGame(unittest.TestCase):
         input_mock.return_value = 0
         self.assertFalse(r.bet_even(p))
 
+        input_mock.return_value = 9
+        self.assertFalse(r.bet_even(p))
+
         input_mock.return_value = 'f'
         self.assertFalse(r.bet_even(p))
 
@@ -100,9 +103,6 @@ class TestGame(unittest.TestCase):
         input_mock.return_value = 0
         self.assertFalse(r.bet_dozen(p))
 
-        input_mock.return_value = 'f'
-        self.assertFalse(r.bet_even(p))
-
     @patch('classes.Person.get_input')
     def test_bet_straight(self, input_mock):         #integration test 
         p = Person()
@@ -118,10 +118,10 @@ class TestGame(unittest.TestCase):
         self.assertEqual(p.num_choice, 36)
 
         input_mock.return_value = 0
-        self.assertFalse(r.bet_dozen(p))
+        self.assertFalse(r.bet_straight(p))
 
         input_mock.return_value = 'f'
-        self.assertFalse(r.bet_even(p))
+        self.assertFalse(r.bet_straight(p))
 
     def test_spin(self):
         r = Roulette()
@@ -293,6 +293,10 @@ class TestGame(unittest.TestCase):
         input_mock.return_value = 0
         self.assertFalse(r.play_again(p))
         input_mock.return_value = -5.6
+        self.assertFalse(r.play_again(p))
+
+        p.bank = 0
+        input_mock.return_value = 'y'
         self.assertFalse(r.play_again(p))
 
 
