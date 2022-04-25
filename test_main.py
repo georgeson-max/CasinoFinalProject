@@ -75,6 +75,9 @@ class TestGame(unittest.TestCase):
         input_mock.return_value = 0
         self.assertFalse(r.bet_even(p))
 
+        input_mock.return_value = 'f'
+        self.assertFalse(r.bet_even(p))
+
     @patch('classes.Person.get_input')
     def test_bet_dozen(self, input_mock):            #integration test 3
         p = Person()
@@ -96,6 +99,9 @@ class TestGame(unittest.TestCase):
 
         input_mock.return_value = 0
         self.assertFalse(r.bet_dozen(p))
+
+        input_mock.return_value = 'f'
+        self.assertFalse(r.bet_even(p))
 
 
 
