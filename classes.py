@@ -24,6 +24,7 @@ class Roulette:
         self.low_high = ''
         self.min = 1
         self.max = 1000
+        self.skip_spin = False
 
     def make_choice(self, player):
         choice = 5
@@ -180,13 +181,16 @@ class Roulette:
         try:
             bet = int(choice)
         except ValueError:
-            print("Sorry, that's not a valid bet. Please try again")
+            print("Sorry, that's not a valid bet. If you'd like you can try betting on the next round!")
+            self.skip_spin = True
             return False
         if (bet > player.bank):
-            print("Sorry, you don't have enough money for that. Please try a smaller bet")
+            print("Sorry, you don't have enough money for that. If you'd like you can try betting on the next round!")
+            self.skip_spin = True
             return False
         if (bet < self.min or bet > self.max):
-            print("Sorry, for this table the minimum bet is $", self.min, " and the maximum bet is $", self.max, sep='')
+            print("Sorry, for this table the minimum bet is $", self.min, " and the maximum bet is $", self.max,". If you'd like you can try betting on the next round!", sep='')
+            self.skip_spin = True
             return False
         player.current_bet = bet
         player.bank -= bet

@@ -237,6 +237,43 @@ class TestGame(unittest.TestCase):
         self.assertEqual(p.bank, 535)
         self.assertEqual(p.current_bet, 0)
 
+    @patch('classes.Person.get_input')
+    def test_make_bet(self, input_mock):             #integration test
+        r = Roulette()
+        p = Person()
+        input_mock.return_value = 0
+        self.assertFalse(r.make_bet(p))
+        self.assertEqual(p.bank,500)
+        self.assertEqual(p.current_bet, 0)
+
+        input_mock.return_value = 550
+        self.assertFalse(r.make_bet(p))
+        self.assertEqual(p.bank,500)
+        self.assertEqual(p.current_bet, 0)
+
+        input_mock.return_value = 1050
+        self.assertFalse(r.make_bet(p))
+        self.assertEqual(p.bank,500)
+        self.assertEqual(p.current_bet, 0)
+
+        input_mock.return_value = -1
+        self.assertFalse(r.make_bet(p))
+        self.assertEqual(p.bank,500)
+        self.assertEqual(p.current_bet, 0)
+
+        input_mock.return_value = 50
+        self.assertTrue(r.make_bet(p))
+        self.assertEqual(p.bank,450)
+        self.assertEqual(p.current_bet, 50)
+
+        input_mock.return_value = 550
+        p.bank = 550
+        self.assertTrue(r.make_bet(p))
+        self.assertEqual(p.bank,0)
+        self.assertEqual(p.current_bet, 550)
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
