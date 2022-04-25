@@ -7,15 +7,15 @@ Roulette is a casino game that has a spinning wheel with 37 divisions on it, lab
 There will be three types of bets with three different odds: **even bets**, which include betting on red versus black, even versus odd, or low (1-18) versus high (19-36), and pay out 1 to 1; **dozen bets**, which allow you to to place a bet on either the first dozen (1-12), second dozen (13-24), or third dozen (25-36), and pay out 2 to 1; and **straight up bets**, where you pick a number between 1 and 36, and it pays out 35 to 1.
 
 Through GitHub actions, every time new code is pushed, it is run through a testing suite. As it stands, the test coverage using this suite is shown below:
->
-Name           Stmts   Miss  Cover
-----------------------------------
-classes.py       193     14    93%
-main.py           29     26    10%
-test_main.py     244      1    99%
-----------------------------------
-TOTAL            466     41    91%
->
+
+|Name           |Stmts   |Miss  |Cover|
+|-------------------------------------|
+|classes.py       |193     |14    |93%|
+|main.py          |29      |26    |10%|
+|test_main.py     |244     |1     |99%|
+|-------------------------------------|
+|TOTAL            |466     |41    |91%|
+
 
 This can be checked for every new push, under the Actions tab and in the "Test with pytest" section of the job.
 
