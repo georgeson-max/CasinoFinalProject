@@ -31,6 +31,13 @@ class TestGame(unittest.TestCase):
         self.assertEqual(r.even_odd,'')
         self.assertEqual(r.low_high,'')
 
+    @patch('classes.Person.get_input')
+    def test_make_choice(self, input_mock):
+        p = Person()
+        r = Roulette()
+        input_mock.return_value = 2
+        self.assertEqual(r.make_choice(p),2)
+
 
 if __name__ == '__main__':
     unittest.main()
