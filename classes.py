@@ -171,9 +171,6 @@ class Roulette:
     def payout(self, p):
         p.bank += p.current_bet * p.odds + p.current_bet
         print("Your winnings this round total $", p.current_bet * p.odds, " so you know have $", p.bank, "!", sep='')
-
-
-
         
 
     def make_bet(self, player):
@@ -203,6 +200,10 @@ class Roulette:
             except ValueError:
                 return False
             if (answer == "y" or answer == "Y"):
+                p.current_bet = 0
+                p.num_choice = 40
+                p.choice = ''
+                p.odds = 0
                 return True
         else:
             return False

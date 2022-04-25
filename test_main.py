@@ -32,14 +32,14 @@ class TestGame(unittest.TestCase):
         self.assertEqual(r.low_high,'')
 
     @patch('classes.Person.get_input')
-    def test_make_choice(self, input_mock):         #integration test 1
+    def test_make_choice(self, input_mock):          #integration test 1
         p = Person()
         r = Roulette()
         input_mock.return_value = 2
         self.assertEqual(r.make_choice(p),2)
 
     @patch('classes.Person.get_input')
-    def test_bet_even(self, input_mock):            #integration test 2
+    def test_bet_even(self, input_mock):             #integration test 2
         p = Person()
         r = Roulette()
         input_mock.return_value = 1
@@ -104,7 +104,7 @@ class TestGame(unittest.TestCase):
         self.assertFalse(r.bet_even(p))
 
     @patch('classes.Person.get_input')
-    def test_bet_straight(self, input_mock):            #integration test 4
+    def test_bet_straight(self, input_mock):         #integration test 4
         p = Person()
         r = Roulette()
         input_mock.return_value = 1
@@ -153,6 +153,63 @@ class TestGame(unittest.TestCase):
         self.assertEqual(r.dozen, 'zero')
         self.assertEqual(r.even_odd, 'zero')
         self.assertEqual(r.low_high, 'zero')
+
+    def test_check_winner(self):                     #integration test 5
+        p = Person()
+        r = Roulette()
+        p.num_choice = 1
+        r.spin(1)
+        self.assertTrue(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'Odd'
+        r.spin(3)
+        self.assertTrue(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'red'
+        r.spin(12)
+        self.assertTrue(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'first'
+        r.spin(2)
+        self.assertTrue(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'Low'
+        r.spin(4)
+        self.assertTrue(r.check_winner(p))
+
+        p = Person()
+        p.num_choice = 1
+        r.spin(2)
+        self.assertFalse(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'Odd'
+        r.spin(4)
+        self.assertFalse(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'red'
+        r.spin(13)
+        self.assertFalse(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'first'
+        r.spin(15)
+        self.assertFalse(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'Low'
+        r.spin(20)
+        self.assertFalse(r.check_winner(p))
+
+        p = Person()
+        p.choice = 'Low'
+        r.spin(0)
+        self.assertFalse(r.check_winner(p))
 
 
 
