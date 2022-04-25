@@ -66,11 +66,36 @@ class TestGame(unittest.TestCase):
         self.assertTrue(r.bet_even(p))
         self.assertEqual(p.odds, 1)
         self.assertEqual(p.choice,'Low')
-        
+
         input_mock.return_value = 6
         self.assertTrue(r.bet_even(p))
         self.assertEqual(p.odds, 1)
         self.assertEqual(p.choice,'High')
+
+        input_mock.return_value = 0
+        self.assertFalse(r.bet_even(p))
+
+    @patch('classes.Person.get_input')
+    def test_bet_dozen(self, input_mock):            #integration test 3
+        p = Person()
+        r = Roulette()
+        input_mock.return_value = 1
+        self.assertTrue(r.bet_dozen(p))
+        self.assertEqual(p.odds, 2)
+        self.assertEqual(p.choice,'first')
+
+        input_mock.return_value = 2
+        self.assertTrue(r.bet_dozen(p))
+        self.assertEqual(p.odds, 2)
+        self.assertEqual(p.choice,'second')
+
+        input_mock.return_value = 3
+        self.assertTrue(r.bet_dozen(p))
+        self.assertEqual(p.odds, 2)
+        self.assertEqual(p.choice,'third')
+
+        input_mock.return_value = 0
+        self.assertFalse(r.bet_dozen(p))
 
 
 
