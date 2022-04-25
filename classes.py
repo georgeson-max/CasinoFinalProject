@@ -171,6 +171,7 @@ class Roulette:
     def payout(self, p):
         p.bank += p.current_bet * p.odds + p.current_bet
         print("Your winnings this round total $", p.current_bet * p.odds, " so you know have $", p.bank, "!", sep='')
+        p.current_bet = 0
         
 
     def make_bet(self, player):

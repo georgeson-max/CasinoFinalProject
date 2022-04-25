@@ -32,14 +32,14 @@ class TestGame(unittest.TestCase):
         self.assertEqual(r.low_high,'')
 
     @patch('classes.Person.get_input')
-    def test_make_choice(self, input_mock):          #integration test 1
+    def test_make_choice(self, input_mock):          #integration test 
         p = Person()
         r = Roulette()
         input_mock.return_value = 2
         self.assertEqual(r.make_choice(p),2)
 
     @patch('classes.Person.get_input')
-    def test_bet_even(self, input_mock):             #integration test 2
+    def test_bet_even(self, input_mock):             #integration test 
         p = Person()
         r = Roulette()
         input_mock.return_value = 1
@@ -79,7 +79,7 @@ class TestGame(unittest.TestCase):
         self.assertFalse(r.bet_even(p))
 
     @patch('classes.Person.get_input')
-    def test_bet_dozen(self, input_mock):            #integration test 3
+    def test_bet_dozen(self, input_mock):            #integration test 
         p = Person()
         r = Roulette()
         input_mock.return_value = 1
@@ -104,7 +104,7 @@ class TestGame(unittest.TestCase):
         self.assertFalse(r.bet_even(p))
 
     @patch('classes.Person.get_input')
-    def test_bet_straight(self, input_mock):         #integration test 4
+    def test_bet_straight(self, input_mock):         #integration test 
         p = Person()
         r = Roulette()
         input_mock.return_value = 1
@@ -154,7 +154,7 @@ class TestGame(unittest.TestCase):
         self.assertEqual(r.even_odd, 'zero')
         self.assertEqual(r.low_high, 'zero')
 
-    def test_check_winner(self):                     #integration test 5
+    def test_check_winner(self):                     #integration test 
         p = Person()
         r = Roulette()
         p.num_choice = 1
@@ -211,6 +211,31 @@ class TestGame(unittest.TestCase):
         r.spin(0)
         self.assertFalse(r.check_winner(p))
 
+    def test_payout(self):                           #integration test
+        r = Roulette()
+        p = Person()
+        p.current_bet = 50
+        p.bank = 450
+        p.odds = 1
+        r.payout(p)
+        self.assertEqual(p.bank, 550)
+        self.assertEqual(p.current_bet, 0)
+
+        p = Person()
+        p.current_bet = 50
+        p.bank = 450
+        p.odds = 2
+        r.payout(p)
+        self.assertEqual(p.bank, 600)
+        self.assertEqual(p.current_bet, 0)
+
+        p = Person()
+        p.current_bet = 1
+        p.bank = 499
+        p.odds = 35
+        r.payout(p)
+        self.assertEqual(p.bank, 535)
+        self.assertEqual(p.current_bet, 0)
 
 
 if __name__ == '__main__':
