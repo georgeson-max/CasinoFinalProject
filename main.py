@@ -4,6 +4,7 @@ def Game():
     r = Roulette()
     p = Person()
     play = True
+    print("Hi Erin")
     while (play):
         choice = r.make_choice(p)
         if (choice == 0):
